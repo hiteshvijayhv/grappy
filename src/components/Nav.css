@@ -1,0 +1,59 @@
+.nav-container {
+    display: flex;
+    align-items: center;
+    padding-right: 1%;
+    justify-content: space-between;
+    background-image: url('https://user-images.githubusercontent.com/46933160/154207277-6628fd3c-791f-4685-b2b7-821fede988cf.png');
+}
+
+.menu-img {
+}
+
+.logo {
+    margin-left: 10px;
+    font-size: 120%;
+    cursor: pointer;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logout-btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #00ff00;
+    color: #fff;
+    border: none;
+    margin-left: 2px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+.signup-btn{
+    background-color: #5e25c7;
+    color: #fff;
+    border: none;
+    margin-left: 2px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.profile-icon {
+    width: 26px;
+    margin-right: 5%;
+}

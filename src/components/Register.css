@@ -1,0 +1,31 @@
+.main {
+    width: 100vw;
+}
+
+.form {
+    margin-top: 0;
+    padding-top: 0;
+    margin-left: 10;
+    margin-right: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+input{
+    width: 100%;
+}
+
+.submit-btn {
+    text-align: center;
+    font-size: 120%;
+    background-color: #6ba114;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-left: 2px;
+    padding: 5px 4px;
+}
