@@ -25,6 +25,7 @@ function Edit() {
 
   const getData = async () => {
     await axios.get(API_ENDPOINT + username).then((response) => {
+      console.log(response + " sfsf");
       setLinksData(response.data.links);
       setProfile(response.data.profile);
     });

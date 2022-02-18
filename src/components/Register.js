@@ -23,7 +23,7 @@ function Register() {
 
   const Submit = async () => {
     await axios
-      .post(`${API_ENDPOINT}/register`, {
+      .post(`${API_ENDPOINT}register`, {
         username: name,
         email: email,
         password: password,

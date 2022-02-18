@@ -14,7 +14,9 @@ function LinksPage() {
   const token = cookies.get("jwttoken");
 
   const [linksData, setLinksData] = useState([]);
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState(
+    "https://user-images.githubusercontent.com/46933160/153798611-5f0fa241-31e6-4c93-8d2a-631450c478eb.png"
+  );
   const [loggedIn, setLoggedin] = useState(false);
 
   const navigate = useNavigate();
