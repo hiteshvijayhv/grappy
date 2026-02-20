@@ -21,9 +21,15 @@ function Home() {
       <Nav isLoggedin={loggedIn} />
       <div className="banner">
         <div className="body">
-          <p className="title">One Link For All Your Social Profiles</p>
-          <p className="description">Just share one link and connect</p>
-          <div className="btn-signup">SignUp To Get Started</div>
+          <p className="eyebrow">Simple, beautiful link sharing</p>
+          <p className="title">One link for all your social profiles.</p>
+          <p className="description">
+            Build a professional profile page, keep your links fresh, and share one
+            destination everywhere.
+          </p>
+          <button className="btn-signup" onClick={() => navigate('/register')}>
+            Create your page
+          </button>
         </div>
       </div>
     </div>

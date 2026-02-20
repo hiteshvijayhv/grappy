@@ -7,7 +7,7 @@ import Nav from "./Nav";
 import './Edit.css';
 
 function Edit() {
-  const API_ENDPOINT = "https://gosharee.herokuapp.com/";
+  const API_ENDPOINT = process.env.REACT_APP_API_BASE_URL || "/api/";
 
   //get username from path params
   const location = useLocation();
