@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+# Grappy: Scalable Link Sharing Platform (React + MongoDB + Kafka)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Grappy is a Linktree-style platform with:
+- React frontend (creator dashboard + public profile pages)
+- Node/Express API with JWT auth
+- MongoDB for persistent data
+- Kafka-based async analytics pipeline (producer + consumer worker)
 
-## Available Scripts
+## Architecture
 
-In the project directory, you can run:
+- **Frontend**: CRA React app (this repo root)
+- **API**: `backend/` Express service
+- **Worker**: `backend/src/workers/analyticsWorker.js` consumes Kafka events and updates daily aggregates
+- **MongoDB**: users, profiles, links, daily_stats
+- **Kafka**: `link-events` topic for `profile_view` and `link_click` events
 
-### `npm start`
+## Folder structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- `src/` frontend code
+- `backend/` API + worker
+- `docker-compose.yml` local full-stack deployment
+- `Dockerfile.frontend` production frontend image
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Local development
 
-### `npm test`
+### 1) Frontend
+```bash
+npm install
+cp .env.example .env
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2) Backend
+```bash
+cd backend
+npm install
+cp .env.example .env
+npm run dev
+```
 
-### `npm run build`
+### 3) Analytics worker
+```bash
+cd backend
+npm run worker
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> Ensure MongoDB and Kafka are running (see Docker section).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Run everything with Docker Compose
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+docker compose up --build
+```
 
-### `npm run eject`
+Services:
+- Frontend: `http://localhost:3000`
+- API: `http://localhost:4000`
+- MongoDB: `localhost:27017`
+- Kafka broker: `localhost:9092`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Environment configuration
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Frontend (`.env` in repo root)
+- `REACT_APP_API_URL=http://localhost:4000/api`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Backend (`backend/.env`)
+- `PORT=4000`
+- `MONGO_URI=mongodb://mongo:27017/grappy`
+- `JWT_SECRET=<strong-secret>`
+- `CORS_ORIGIN=http://localhost:3000`
+- `KAFKA_BROKERS=kafka:9092`
+- `KAFKA_TOPIC=link-events`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API summary
 
-## Learn More
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/profiles/me`
+- `PUT /api/profiles/me`
+- `GET /api/profiles/:username`
+- `POST /api/links`
+- `PUT /api/links/:id`
+- `DELETE /api/links/:id`
+- `PUT /api/links/reorder`
+- `POST /api/analytics/click/:linkId`
+- `GET /api/analytics/me`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Deployment guide
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Option A: VM + Docker Compose
+1. Provision VM (2+ CPU, 4–8 GB RAM minimum).
+2. Install Docker + Compose plugin.
+3. Clone repository.
+4. Copy `.env.example` → `.env`, and `backend/.env.example` → `backend/.env`.
+5. Change secrets and production URLs.
+6. Start services:
+   ```bash
+   docker compose up -d --build
+   ```
+7. Put Nginx/Caddy reverse proxy in front (TLS via Let’s Encrypt).
 
-### Code Splitting
+## Option B: Managed cloud services (recommended for scale)
+- Frontend: Vercel/Netlify or container service
+- API + Worker: ECS/Fargate, GKE, or Render/Railway
+- MongoDB: MongoDB Atlas
+- Kafka: Confluent Cloud / MSK / Aiven
+- Redis (optional, next step): managed Redis for cache/rate limits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Production scaling tips
+- Run API instances horizontally behind load balancer.
+- Run multiple analytics worker replicas with one consumer group.
+- Create Mongo indexes for username, profileId+position, stats dimensions.
+- Add profile payload caching with Redis.
+- Separate redirect endpoint as high-throughput stateless service.
+- Add observability: OpenTelemetry + centralized logs + dashboards.
 
-### Analyzing the Bundle Size
+## Why Kafka in this implementation?
+- Decouples user-facing latency from analytics writes.
+- Supports future consumers (fraud detection, recommendations, billing).
+- Allows replay/backfill of event streams.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Seed demo data
+```bash
+cd backend
+npm run seed
+```
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Creates:
+- email: `demo@grappy.app`
+- password: `demo1234`
+- username: `demo`
