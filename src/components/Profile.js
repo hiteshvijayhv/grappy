@@ -6,7 +6,7 @@ import Nav from "./Nav";
 import "./Profile.css";
 
 function LinksPage() {
-  const API_ENDPOINT = "http://gosharee.herokuapp.com/";
+  const API_ENDPOINT = process.env.REACT_APP_API_BASE_URL || "/api/";
   //get username from path params in
   const location = useLocation();
   const username = location.pathname.toString().split("/")[1];

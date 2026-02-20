@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 import "./Login.css";
 import Nav from "./Nav";
 
-const API_ENDPOINT = "https://gosharee.herokuapp.com/";
+const API_ENDPOINT = process.env.REACT_APP_API_BASE_URL || "/api/";
 
 function Login() {
   const [username, setUsername] = useState("");

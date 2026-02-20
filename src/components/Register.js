@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import Cookies from "universal-cookie";
 
-const API_ENDPOINT = "https://gosharee.herokuapp.com/";
+const API_ENDPOINT = process.env.REACT_APP_API_BASE_URL || "/api/";
 
 function Register() {
   const [name, setName] = useState("");
