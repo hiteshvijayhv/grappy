@@ -1,43 +1,55 @@
 .profile-img {
     border-radius: 50%;
-    width: 100px;
-    margin: 20px;
-    height: 100px;
+    width: 108px;
+    margin: 12px;
+    height: 108px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 10px 30px rgba(30, 41, 59, 0.2);
 }
 
 .links-container {
-    /* add background blur */
-    width: 100%;
+    width: min(620px, 100%);
+    margin: 28px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    background-image: url('https://user-images.githubusercontent.com/46933160/154207277-6628fd3c-791f-4685-b2b7-821fede988cf.png');
+    min-height: calc(100vh - 120px);
+    padding: 28px 20px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #312e81 0%, #4338ca 25%, #4f46e5 100%);
+    color: #ffffff;
+    box-shadow: 0 24px 50px rgba(49, 46, 129, 0.35);
 }
 
-a {
-    text-decoration: none;
-    color: black;
-    font-weight: 400;
-    
+.profile-handle {
+    margin: 10px 0 18px;
+    font-weight: 700;
 }
 
 .links-div{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: min(500px, 100%);
 }
 
 .links {
-    margin: 1%;
-    padding: 1%;
-    background-color: white;
+    margin: 8px 0;
+    padding: 14px 16px;
+    background-color: rgba(255, 255, 255, 0.96);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    border-radius: 8px;
-    box-shadow: 0.5px 0.5px 0px rgba(0, 0, 0, 0.5);
+    min-height: 48px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #1e293b;
+    font-weight: 600;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.links:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
 }

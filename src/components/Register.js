@@ -40,7 +40,9 @@ function Register() {
     <div className="main">
       <Nav isLoggedin={token === "" ? true : false} />
       <div className="form">
-        <div>
+        <div className="auth-card">
+          <h2>Create your account</h2>
+          <p>Start sharing all your links from a single profile.</p>
           <input
             className="input-field"
             value={name}
@@ -51,9 +53,7 @@ function Register() {
             label="name"
             placeholder="name"
           />
-        </div>
 
-        <div>
           <input
             className="input-field"
             value={email}
@@ -64,9 +64,7 @@ function Register() {
             label="email"
             placeholder="email"
           />
-        </div>
 
-        <div>
           <input
             className="input-field"
             value={password}
@@ -78,11 +76,11 @@ function Register() {
             type="password"
             placeholder="password"
           />
-        </div>
 
-        <div>
-          <div className="submit-btn" onClick={() => Submit()}>
-            SignUp
+          <div>
+            <div className="submit-btn" onClick={() => Submit()}>
+              SignUp
+            </div>
           </div>
         </div>
         <h1 className="res">{res}</h1>

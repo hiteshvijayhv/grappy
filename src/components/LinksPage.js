@@ -37,7 +37,7 @@ function LinksPage() {
       <Nav isLoggedin={isToken} />
       <div className="links-container">
         <img className="profile-img" src={profile} />
-        <h4>@{username}</h4>
+        <h2 className="profile-handle">@{username}</h2>
 
         {linksData && (
           <div className="links-div">
@@ -48,6 +48,7 @@ function LinksPage() {
                   key={links.title}
                   href={"https://" + links.link}
                   target="_blank"
+                  rel="noreferrer"
                 >
                   {links.title}
                 </a>

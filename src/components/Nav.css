@@ -1,59 +1,63 @@
 .nav-container {
     display: flex;
     align-items: center;
-    padding-right: 1%;
+    padding: 14px 22px;
     justify-content: space-between;
-    background-image: url('https://user-images.githubusercontent.com/46933160/154207277-6628fd3c-791f-4685-b2b7-821fede988cf.png');
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .menu-img {
 }
 
 .logo {
-    margin-left: 10px;
-    font-size: 120%;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.2px;
     cursor: pointer;
 }
 
 .btn-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
 }
 
 .logout-btn {
-    background-color: #ff0000;
+    background-color: #dc2626;
     color: #fff;
     border: none;
-    padding: 5px 10px;
-    margin-right: 2px;
-    border-radius: 5px;
+    padding: 9px 14px;
+    border-radius: 10px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .edit-btn {
-    background-color: #00ff00;
+    background-color: #10b981;
     color: #fff;
     border: none;
-    margin-left: 2px;
-    border-radius: 5px;
-    padding: 5px 10px;
+    border-radius: 10px;
+    padding: 9px 14px;
     cursor: pointer;
-    margin-right: 12px;
+    font-weight: 600;
 }
 
 .signup-btn{
-    background-color: #5e25c7;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
     color: #fff;
     border: none;
-    margin-left: 2px;
-    border-radius: 5px;
-    padding: 5px 10px;
+    border-radius: 10px;
+    padding: 9px 14px;
     cursor: pointer;
-    margin-right: 10px;
+    font-weight: 600;
 }
 
 .profile-icon {
-    width: 26px;
-    margin-right: 5%;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    cursor: pointer;
 }

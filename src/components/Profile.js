@@ -52,6 +52,7 @@ function LinksPage() {
                 <a className="links"
                   href={"https://" + links.link}
                   target="_blank"
+                  rel="noreferrer"
                   key={links.title}
                 >
                   {links.title}

@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Cookies from "universal-cookie";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Nav.css";
 
 function Nav({ isLoggedin }) {
-  const [isLogged, setIsLogged] = useState(false);
-
   const cookies = new Cookies();
   const navigate = useNavigate();
-  const location = useLocation();
   const username = cookies.get("username");
-
-  const currentLocation = location.pathname.toString().split("/");
 
   const logout = () => {
     //logout
@@ -21,18 +16,7 @@ function Nav({ isLoggedin }) {
   };
 
   return (
-    <div
-      className="nav-container"
-      style={{
-        backgroundImage:
-          currentLocation[1] === "login" ||
-          currentLocation[2] === "edit" ||
-          currentLocation[1] === "register" ||
-          currentLocation[1] === ""
-            ? "none"
-            : "https://user-images.githubusercontent.com/46933160/154207277-6628fd3c-791f-4685-b2b7-821fede988cf.png",
-      }}
-    >
+    <div className="nav-container">
       <div>
         <h3 className="logo" onClick={() => navigate('/')}>Grappy</h3>
       </div>

@@ -39,7 +39,9 @@ function Login() {
     <div className="main">
       <Nav isLoggedin={istoken === "" ? false : true} />
       <div className="form">
-        <div className="input-form">
+        <div className="auth-card input-form">
+          <h2>Welcome back</h2>
+          <p>Log in to manage your public link page.</p>
           <input
             className="input-field"
             value={username}
