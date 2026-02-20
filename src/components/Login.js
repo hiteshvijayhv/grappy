@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 import "./Login.css";
 import Nav from "./Nav";
 
-const API_ENDPOINT = "http://gosharee.herokuapp.com/";
+const API_ENDPOINT = "https://gosharee.herokuapp.com/";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -63,7 +63,8 @@ function Login() {
       cookies.set("username", username.trim(), { path: "/" });
       navigate(`/${username.trim()}/view`);
     } catch (requestError) {
-      setError("Login failed. Check your credentials and try again.");
+      const apiMessage = requestError?.response?.data?.message;
+      setError(apiMessage || "Login failed. Check your credentials and try again.");
     } finally {
       setIsLoading(false);
     }

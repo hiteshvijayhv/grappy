@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import Cookies from "universal-cookie";
 
-const API_ENDPOINT = "http://gosharee.herokuapp.com/";
+const API_ENDPOINT = "https://gosharee.herokuapp.com/";
 
 function Register() {
   const [name, setName] = useState("");
@@ -75,7 +75,8 @@ function Register() {
       setRes("Account created. Redirecting...");
       navigate(`/${normalizedName}/view`);
     } catch (requestError) {
-      setError("Could not sign up. Please verify your details and try again.");
+      const apiMessage = requestError?.response?.data?.message;
+      setError(apiMessage || "Could not sign up. Please verify your details and try again.");
     } finally {
       setIsLoading(false);
     }
